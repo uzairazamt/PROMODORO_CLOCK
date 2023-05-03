@@ -55,8 +55,11 @@ def start():
 
 # defining a function for a countdown that accept seconds in count variables
 def count_down(count):
+    #get count in minutes by dividing 60
     count_min = math.floor(count / 60)
+    #get count in seconds by % of  60
     count_sec = count % 60
+    #by using if statement changing the UI experience 0:0 to 00:00
     if count_sec < 10:
         count_sec = f"0{count_sec}"
     canvas.itemconfig(timer_text, text=f"{count_min}:{count_sec}")
@@ -65,6 +68,7 @@ def count_down(count):
         timer = window.after(100, count_down, count - 1)
     else:
         start()
+        # by taking % 2 == 0 we apply check mark on break time the break time is multiple of 2 in rep 
         if rep % 2 == 0:
             check_text.config(text="✔")
         else:
