@@ -1,15 +1,15 @@
 from tkinter import *
 import math
-
+import winsound
 # ---------------------------- CONSTANTS ------------------------------- #
 PINK = "#e2979c"
 RED = "#e7305b"
 GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 FONT_NAME = "Courier"
-WORK_MIN = 25
-SHORT_BREAK_MIN = 5
-LONG_BREAK_MIN = 20
+WORK_MIN = 25*60
+SHORT_BREAK_MIN = 5*60
+LONG_BREAK_MIN = 20*60
 timer = None
 rep = 0
 
@@ -62,10 +62,11 @@ def count_down(count):
     canvas.itemconfig(timer_text, text=f"{count_min}:{count_sec}")
     if count > 0:
         global timer
-        timer = window.after(100, count_down, count - 1)
+        timer = window.after(1000, count_down, count - 1)
     else:
         start()
         if rep % 2 == 0:
+            winsound.Beep(1000,200)
             check_text.config(text="✔")
         else:
             check_text.config(text="")
